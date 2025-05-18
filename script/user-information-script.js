@@ -119,25 +119,13 @@ function validateForm() {
     }
 }
 
-async function registerUser(formData) {
-    try {
-        const response = await fetch('../database/register-information.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams(formData).toString(),
-        });
-
-        if (response.ok) {
-            window.location.href = '../forms/register-account.html';
-        } else {
-            const errorData = await response.json();
-            displayServerSideErrors(errorData);
-        }
-    } catch (error) {
-        console.error('Error during registration:', error);
-        registerInfoGeneralError.textContent = 'An unexpected error occurred. Please try again later.';
+function displayServerSideErrors(result) {
+    if (result && result.error) {
+        registerInfoGeneralError.textContent = result.error;
+        registerInfoGeneralError.style.display = "block";
+    } else {
+        registerInfoGeneralError.textContent = "An unknown error occurred.";
+        registerInfoGeneralError.style.display = "block";
     }
 }
 
@@ -145,7 +133,27 @@ registerForm.addEventListener('submit', function(event) {
     event.preventDefault();
     if (validateForm()) {
         const formData = new FormData(registerForm);
-        registerUser(formData);
+        // Convert FormData to URLSearchParams for fetch
+        fetch('../database/register-information.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(formData).toString(),
+        })
+        .then(res => res.json())
+        .then(result => {
+            if (result.success) {
+                window.location.href = result.redirect;
+            } else {
+                displayServerSideErrors(result);
+            }
+        })
+        .catch(error => {
+            console.error('Error during registration:', error);
+            registerInfoGeneralError.textContent = 'An unexpected error occurred. Please try again later.';
+            registerInfoGeneralError.style.display = "block";
+        });
     }
 });
 

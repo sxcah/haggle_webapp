@@ -7,11 +7,10 @@
 }
 
 body {
-    background-color: transparent;
-
+    background-color: #f6f4fb;
+    color: #222;
     display: flex;
     flex-direction: column;
-
     min-height: 100vh;
 }
 
@@ -20,19 +19,16 @@ main {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    
     width: 100%;
-
-    background-color: #e0e0e0;
+    background-color: #f3f0fa;
 }
 
 nav {
     display: flex;
     flex-direction: row;
-
     width: 100%;
-
-    background-color: #121212;
+    background-color: #4b0082;
+    box-shadow: 0 2px 8px rgba(75,0,130,0.05);
 }
 
 nav h1 {
@@ -46,13 +42,9 @@ nav h1 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     gap: 1.2rem;
-
     width: fit-content;
-
     padding: 1rem 2rem;
-
     margin-left: auto;
 }
 
@@ -60,51 +52,83 @@ nav h1 {
     color: #fff;
     text-decoration: none;
     font-size: 1.2rem;
-    transition: color 0.3s ease-in-out;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 0.4rem 1.2rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+    background: #fff;
+    color: #4b0082;
 }
 
 section {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    flex-grow: 1;
     width: 100%;
+    background: #f8f7fc;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 2px 8px rgba(75,0,130,0.05);
+    min-height: 80vh;
 }
 
 .main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     flex-grow: 1;
-
     gap: 1.2rem;
-
     width: 100%;
     max-width: 1000px;
-
     margin: 2rem 0;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
+    padding: 2rem 1.5rem;
 }
 
 .create-post-button {
     display: flex;
-
     margin-left: auto;
-
     width: fit-content;
 }
 
 .create-post-button input {
-    border: 2px solid #121212;
+    border: 2px solid #4b0082;
     border-radius: 12px;
 
     padding: .6rem 2rem;
-    font-size: 1.02rem
+    font-size: 1.02rem;
+
+    background: #f8f7fc;
+    color: #4b0082;
+    font-weight: bold;
+
+    transition: background 0.2s, color 0.2s, border 0.2s;
 }
 
 .create-post-button input:hover {
     cursor: pointer;
-    background-color: #add8e6;
+
+    background-color: #e6e0f7;
+    color: #fff;
+    border-color: #6a1bbd;
+}
+
+.posts-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    background: #fafaff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(75,0,130,0.04);
+    padding: 1.5rem 2rem;
+    border: 2px solid #4b0082;
 }
 
 .post-container {
@@ -124,7 +148,7 @@ section {
     background-color: #fff;
     padding: .2rem 1rem;
 
-    border: 2px solid #121212;
+    border: 2px solid #4b0082;
     border-radius: 12px;
 }
 
@@ -150,6 +174,7 @@ section {
     margin-bottom: 2rem;
     width: 100%;
     max-width: 700px;
+    border: 2px solid #4b0082;
 }
 
 #post-details h2 {
@@ -178,6 +203,7 @@ section {
     padding: 2rem 2.5rem;
     width: 100%;
     max-width: 700px;
+    border: 2px solid #4b0082;
 }
 
 #comments-section h3 {
@@ -236,6 +262,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    border: 2px solid #4b0082;
 }
 
 .post-create-content h2 {
@@ -252,6 +279,7 @@ section {
     font-size: 1rem;
     margin-bottom: 1.2rem;
     resize: vertical;
+    background: #fafaff;
 }
 
 #post-title {
@@ -319,6 +347,7 @@ section {
 
 .delete-post:hover {
     cursor: pointer;
+    color: #e74c3c;
 }
 
 .delete-comment {
@@ -330,6 +359,134 @@ section {
 
 .delete-comment:hover {
     cursor: pointer;
+    color: #e74c3c;
+}
+
+/* Profile page light theme styles */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    background: #fafaff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(75,0,130,0.04);
+    padding: 2rem 2.5rem;
+    border: 2px solid #4b0082;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.profile-content h2 {
+    color: #4b0082;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+#profile-details p {
+    font-size: 1.05rem;
+    margin: 0.5rem 0;
+}
+
+#logout-link {
+    color: #fff;
+    background: #e74c3c;
+    border-radius: 8px;
+    padding: 0.4rem 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+    border: none;
+    outline: none;
+    margin-left: 1rem;
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+#logout-link:hover {
+    background: #fff;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
+    padding: 2rem 1.5rem;
+}
+
+.links-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
+    padding: 2rem 1.5rem;
+}
+
+.links-content p {
+    font-size: 1.2rem;
+    margin-right: auto;
+}
+
+.links-content .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 0;
+}
+
+.links-content .links .link a {
+    display: inline-block;
+    background: #f8f7fc;
+    color: #4b0082;
+    border: 2px solid #4b0082;
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.08rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(75,0,130,0.04);
+}
+
+.links-content .links .link a:hover {
+    background: #4b0082;
+    color: #fff;
+    border-color: #6a1bbd;
+    box-shadow: 0 2px 8px rgba(75,0,130,0.10);
+}
+
+.profile-info-container {
+    display: flex;
+    flex-direction: column;
+    gap : 1.2rem;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
+    padding: 2rem 1.5rem;
 }
 
 @font-face {

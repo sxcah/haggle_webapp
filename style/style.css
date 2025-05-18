@@ -1,17 +1,15 @@
 * {
     padding: 0;
     margin: 0;
-
     box-sizing: border-box;
     font-family: "mark", sans-serif;
 }
 
 body {
-    background-color: transparent;
-
+    background-color: #f6f4fb;
+    color: #222;
     display: flex;
     flex-direction: column;
-
     min-height: 100vh;
 }
 
@@ -20,19 +18,16 @@ main {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    
     width: 100%;
-
-    background-color: #e0e0e0;
+    background-color: #f3f0fa;
 }
 
 nav {
     display: flex;
     flex-direction: row;
-
     width: 100%;
-
-    background-color: #121212;
+    background-color: #4b0082;
+    box-shadow: 0 2px 8px rgba(75,0,130,0.05);
 }
 
 nav h1 {
@@ -46,13 +41,9 @@ nav h1 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     gap: 1.2rem;
-
     width: fit-content;
-
     padding: 1rem 2rem;
-
     margin-left: auto;
 }
 
@@ -60,7 +51,15 @@ nav h1 {
     color: #fff;
     text-decoration: none;
     font-size: 1.2rem;
-    transition: color 0.3s ease-in-out;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 0.4rem 1.2rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+    background: #fff;
+    color: #4b0082;
 }
 
 section {
@@ -70,6 +69,10 @@ section {
     justify-content: center;
     flex-grow: 1;
     width: 100%;
+    background: #f8f7fc;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 2px 8px rgba(75,0,130,0.05);
+    min-height: 80vh;
 }
 
 section .main-container {
@@ -77,34 +80,32 @@ section .main-container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     width: 100%;
     max-width: 800px;
-
-    background-color: #eee;
-
-    border: 2px solid #000;
+    background-color: #fff;
+    border: 2px solid #4b0082;
     border-radius: 12px;
-
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
     overflow: hidden;
+    margin: 2rem 0;
+    padding: 2rem 1.5rem;
 }
 
 .main-container .main-content {
     display: flex;
     flex-direction: column;
-
     width: 100%;
-
     padding: 2rem 5rem;
 }
 
 .main-container .welcome-content {
     display: flex;
     flex-direction: column;
-
     width: 100%;
-
     background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
+    padding: 2rem 1.5rem;
 }
 
 .main-container .welcome-content .top-text {
@@ -114,27 +115,27 @@ section .main-container {
 .main-container .links-content {
     display: flex;
     flex-direction: column;
-
     width: 100%;
-
-    background-color: #121212;
-
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
     gap: 2rem;
+    padding: 2rem 1.5rem;
 }
 
 .main-container .form-content {
     display: flex;
     flex-direction: column;
-
     width: 100%;
-
-    background-color: #121212;
-
+    background-color: #fafaff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(75,0,130,0.08);
     gap: 2rem;
+    padding: 2rem 1.5rem;
 }
 
 .main-container .links-content p {
-    color: #fff;
+    color: #4b0082;
     font-size: 1.2rem;
 }
 
@@ -147,7 +148,7 @@ section .main-container {
 .link {
     display: flex;
     flex-direction: row;
-    color: #fff;
+    color: #4b0082;
     text-decoration: none;
     position: relative;
     overflow: hidden;
@@ -157,7 +158,7 @@ section .main-container {
 }
 
 .link:hover {
-    color: #4b0082;
+    color: #6a1bbd;
 }
 
 .link::after {
@@ -177,22 +178,29 @@ section .main-container {
 }
 
 .link a {
-    color: #fff;
+    color: #4b0082;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
+    background: #f8f7fc;
+    border: 2px solid #4b0082;
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.08rem;
+    font-weight: 500;
+    box-shadow: 0 1px 4px rgba(75,0,130,0.04);
 }
 
 .link a:hover {
-    color: #add8e6;
+    color: #fff;
+    background: #4b0082;
+    border-color: #6a1bbd;
 }
 
 form {
     display: flex;
     flex-direction: column;
     gap: .6rem;
-
     width: 100%;
-
 }
 
 .input-group {
@@ -204,27 +212,25 @@ form {
 .text-field {
     width: 320px;
     padding: .6rem 1rem;
-
-    border: none;
+    border: 1.5px solid #4b0082;
     outline: none;
-
     border-radius: 12px;
+    background: #fafaff;
+    color: #222;
 }
 
 .password input {
     border: none;
     outline: none;
     background-color: transparent;
-
     width: fit-content;
-    color: #fff;
-
+    color: #4b0082;
     transition: color 0.3s ease-in-out;
 }
 
 .password input:hover {
     cursor: pointer;
-    color: #4b0082;
+    color: #6a1bbd;
 }
 
 .submit-return {
@@ -232,18 +238,18 @@ form {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     height: fit-content;
 }
 
 .submit-return a {
     text-decoration: none;
-    color: #fff;
+    color: #4b0082;
+    font-weight: bold;
     transition: color 0.3s ease-in-out;
 }
 
 .submit-return a:hover {
-    color: #add8e6;
+    background-color: #4b0082;
     cursor: pointer;
 }
 
@@ -251,48 +257,51 @@ form {
     width: 112px;
     min-width: fit-content;
     padding: .6rem 2rem;
-
     font-size: 1rem;
-
-    border: none;
+    border: 2px solid #4b0082;
     outline: none;
     border-radius: 12px;
-
-    transition: background-color 0.3s ease-in-out;
+    background: #4b0082;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .submit-return input:hover {
     cursor: pointer;
-    background-color: #add8e6;
+    background-color: #fff;
+    color: #4b0082;
 }
 
 .error-message {
     display: none;
-    color: #f00;
+    color: #e74c3c;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
 }
 
 .form-link {
     display: flex;
     flex-direction: row;
-
     gap: 1rem;
     align-items: center;
 }
 
 .form-link p {
-    color: #fff;
+    color: #4b0082;
 }
 
 .form-link a {
     text-decoration: none;
-    color: #fff;
+    color: #4b0082;
     transition: color 0.3s ease-in-out;
 }
 
 .form-link a:hover {
-    color: #add8e6;
+    color: #6a1bbd;
     cursor: pointer;
 }
+
 
 @font-face {
     font-family: "mark";

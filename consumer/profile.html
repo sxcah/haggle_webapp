@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/consumer.css">
     <title>Haggle HUB - Profile</title>
 </head>
 <body>
@@ -36,12 +36,20 @@
             .then(data => {
                 if (data.success) {
                     document.getElementById('profile-details').innerHTML = `
-                        <p><strong>First Name:</strong> ${data.firstname}</p>
-                        <p><strong>Last Name:</strong> ${data.lastname}</p>
-                        <p><strong>Email:</strong> ${data.email}</p>
-                        <p><strong>Contact Number:</strong> ${data.contact_number}</p>
-                        <p><strong>Address:</strong> ${data.address}</p>
-                        <p><strong>Username:</strong> ${data.username}</p>
+                    <div class="profile-info-container">
+                        <div class="profile-info">
+                            <p><strong>Username:</strong> ${data.username}</p>
+                        </div>
+                        <div class="profile-info">
+                            <p><strong>First Name:</strong> ${data.firstname}</p>
+                            <p><strong>Last Name:</strong> ${data.lastname}</p>
+                        </div>
+                        <div class="profile-info">
+                            <p><strong>Email:</strong> ${data.email}</p>
+                            <p><strong>Contact Number:</strong> ${data.contact_number}</p>
+                            <p><strong>Address:</strong> ${data.address}</p>
+                        </div>
+                    </div>
                     `;
                 } else {
                     document.getElementById('profile-details').innerHTML = '<p>Unable to load profile information.</p>';

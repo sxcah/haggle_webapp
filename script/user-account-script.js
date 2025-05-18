@@ -91,15 +91,27 @@ async function registerUser(formData) {
             body: new URLSearchParams(formData).toString(),
         });
 
-        if (response.ok) {
+        const result = await response.json();
+
+        if (result.success) {
             window.location.href = '../forms/login.html';
         } else {
-            const errorData = await response.json();
-            displayServerSideErrors(errorData);
+            displayServerSideErrors(result);
         }
     } catch (error) {
         console.error('Error during registration:', error);
         accountGeneralError.textContent = 'An unexpected error occurred. Please try again later.';
+        accountGeneralError.style.display = "block";
+    }
+}
+
+function displayServerSideErrors(result) {
+    if (result && result.error) {
+        accountGeneralError.textContent = result.error;
+        accountGeneralError.style.display = "block";
+    } else {
+        accountGeneralError.textContent = "An unknown error occurred.";
+        accountGeneralError.style.display = "block";
     }
 }
 
