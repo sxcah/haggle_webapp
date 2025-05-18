@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Haggle HUB - Admin Login</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle Admin</h1>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="main-content welcome-content">
+                    <p class="top-text">Welcome, Admin! Manage Haggle with confidence and security.</p>
+                    <p class="bottom-text">Log in to access the admin dashboard and moderation tools.</p>
+                </div>
+                <div class="main-content form-content">
+                    <form action="../database/login-admin.php" method="post" onsubmit="return false" id="admin-login-form">
+                        <div class="error-message" id="general-error"></div>
+                        <div class="input-group">
+                            <input type="text" class="text-field" id="admin-username" name="username" placeholder="admin username">
+                            <div class="error-message" id="username-error"></div>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="text-field" id="admin-password" name="password" placeholder="password">
+                            <div class="error-message" id="password-error"></div>
+                        </div>
+                        <div class="input-group password">
+                            <input type="button" id="show-password" value="Show Password" onclick="togglePasswordVisibility()">
+                        </div>
+                        <div class="input-group submit-return">
+                            <input type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../script/login-admin-script.js"></script>
+</body>
+</html>

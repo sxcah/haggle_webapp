@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/consumer.css">
+    <title>Haggle HUB</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle</h1>
+            </div>
+            <div class="nav-links">
+                <a href="../consumer/dashboard.html">Dashboard</a>
+                <a href="../consumer/profile.html">Profile</a>
+                <a href="../consumer/settings.html">Settings</a>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="main-content">
+                    <div class="post-create-content">
+                        <h2>Create a Post</h2>
+                        <form id="create-post-form">
+                            <textarea id="post-title" name="title" rows="2" placeholder="Title" required></textarea>
+                            <textarea id="post-content" name="content" rows="5" placeholder="What's on your mind?" required></textarea>
+                            <div class="input-group submit-return">
+                                <input type="submit" value="Post">
+                                <a href="../consumer/home.html">Back to Home</a>
+                            </div>
+                            <div class="error-message" id="post-error"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.getElementById('create-post-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('post-title').value.trim();
+            const content = document.getElementById('post-content').value.trim();
+            const postError = document.getElementById('post-error');
+            postError.textContent = '';
+            postError.style.display = 'none';
+
+            if (!title) {
+                postError.textContent = 'Post title cannot be empty.';
+                postError.style.display = 'block';
+                return;
+            }
+            if (!content) {
+                postError.textContent = 'Post content cannot be empty.';
+                postError.style.display = 'block';
+                return;
+            }
+
+            fetch('../database/create-post.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: new URLSearchParams({title, content})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '../consumer/home.html';
+                } else {
+                    postError.textContent = data.error || 'Failed to create post.';
+                    postError.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haggle HUB - Admin Post Management</title>
+    <link rel="stylesheet" href="../style/admin-style.css">
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Admin Post Management</h1>
+            </div>
+            <div class="admin-dashboard-links">
+                <a href="admin-dashboard.html">Dashboard</a>
+            </div>
+        </nav>
+        <section>
+            <div class="admin-dashboard-container">
+                <h2>All Posts</h2>
+                <div id="post-table-container">
+                    <!-- Post table will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Fetch and display posts
+        function loadPosts() {
+            fetch('../database/get-posts.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        const posts = data.posts;
+                        let html = `<table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Content</th>
+                                    <th>Author</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+                        posts.forEach(post => {
+                            html += `
+                                <tr data-post-id="${post.id}">
+                                    <td>${post.id}</td>
+                                    <td>${post.title}</td>
+                                    <td>${post.content}</td>
+                                    <td>${post.username}</td>
+                                    <td>${post.created_at}</td>
+                                    <td>
+                                        <button class="action-btn delete-btn" data-id="${post.id}">Delete</button>
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                        html += `</tbody></table>`;
+                        document.getElementById('post-table-container').innerHTML = html;
+
+                        // Add delete event listeners
+                        document.querySelectorAll('.delete-btn').forEach(btn => {
+                            btn.addEventListener('click', function() {
+                                const postId = this.getAttribute('data-id');
+                                if (confirm('Are you sure you want to delete this post?')) {
+                                    fetch('../database/admin-delete-post.php', {
+                                        method: 'POST',
+                                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                                        body: new URLSearchParams({post_id: postId})
+                                    })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            loadPosts();
+                                        } else {
+                                            alert(data.error || 'Failed to delete post.');
+                                        }
+                                    });
+                                }
+                            });
+                        });
+                    } else {
+                        document.getElementById('post-table-container').innerHTML = '<p>No posts found.</p>';
+                    }
+                });
+        }
+
+        // Initial load
+        loadPosts();
+    </script>
+</body>
+</html>

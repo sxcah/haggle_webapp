@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Haggle HUB - Work in Progress</title>
+    <style>
+        .wip-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(75,0,130,0.08);
+            padding: 2.5rem 2rem;
+            margin: 0 auto;
+            max-width: 100%;
+            width: 100%;
+        }
+        .wip-title {
+            font-size: 2.2rem;
+            color: #4b0082;
+            margin-bottom: 1rem;
+        }
+        .wip-message {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .wip-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .wip-links a, .wip-links button {
+            color: #4b0082;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #4b0082;
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            background: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .wip-links a:hover, .wip-links button:hover {
+            background: #4b0082;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle</h1>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="wip-container">
+                    <div class="wip-title">🚧 Work in Progress 🚧</div>
+                    <div class="wip-message">
+                        This page is currently under construction.<br>
+                        We're working hard to bring you new features. Please check back soon!
+                    </div>
+                    <div class="wip-links">
+                        <button onclick="window.history.length > 1 ? window.history.back() : window.location.href='index.html'">Go Back</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

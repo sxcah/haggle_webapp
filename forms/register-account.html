@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Haggle HUB</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle</h1>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="main-content welcome-content">
+                    <p class="top-text">Join Haggle, your trusted platform for mastering negotiation!</p>
+                    <p class="bottom-text">Create an account to start learning, sharing, and perfecting your haggling skills.</p>
+                </div>
+                <div class="main-content form-content">
+                    <form action="../database/register-user-information.php" method="post" onsubmit="return false" id="register-account-form">
+                        <div class="error-message" id="general-error">general-error</div>
+                        <div class="input-group">
+                            <input type="text" class="text-field" id="username" name="username" placeholder="username">
+                            <div class="error-message" id="username-error">username-error</div>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="text-field" id="password" name="password" placeholder="password">
+                            <div class="error-message" id="password-error">password-error</div>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="text-field" id="confirm-password" name="confirm-password" placeholder="confirm-password">
+                            <div class="error-message" id="confirm-password-error">confirm-password-error</div>
+                        </div>
+                        <div class="input-group password">
+                            <input type="button" id="show-password" value="Show Password" onclick="togglePasswordVisibility()">
+                        </div>
+                        <div class="input-group submit-return">
+                            <input type="submit" value="Create Account">
+                            <div class="link"><a href="../index.html">Return to Hub</a></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../script/user-account-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haggle HUB - Admin Dashboard</title>
+    <link rel="stylesheet" href="../style/admin-style.css">
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle Admin Dashboard</h1>
+            </div>
+            <div class="admin-dashboard-links">
+                <a href="admin-user-management.html">User Management</a>
+                <a href="admin-post-management.html">Post Moderation</a>
+                <a href="../wip.html">Reports</a>
+                <button class="admin-logout-btn" onclick="logoutAdmin()">Logout</button>
+            </div>
+        </nav>
+        <section>
+            <div class="admin-dashboard-container">
+                <div class="admin-dashboard-title">Welcome, Admin!</div>
+                <div class="admin-summary">
+                    <p>This is your control panel for managing users, posts, and site content.</p>
+                    <ul>
+                        <li>View and moderate user posts</li>
+                        <li>Manage user accounts</li>
+                        <li>Review reports and flagged content</li>
+                        <li>Access site analytics (coming soon)</li>
+                    </ul>
+                </div>
+                <div class="admin-dashboard-section">
+                    <h2>Quick Actions</h2>
+                    <div>
+                        <a href="admin-user-management.html">View Users</a>
+                        <a href="admin-post-management.html">View Posts</a>
+                        <a href="../wip.html">View Reports</a>
+                    </div>
+                </div>
+                <div class="admin-dashboard-section">
+                    <h2>System Status</h2>
+                    <div>
+                        <p>All systems operational.</p>
+                        <p>For more features, check back soon!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        function logoutAdmin() {
+            fetch('../database/logout-admin.php', { method: 'POST' })
+                .then(() => window.location.href = 'admin-login.html');
+        }
+    </script>
+</body>
+</html>

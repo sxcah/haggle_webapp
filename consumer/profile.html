@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Haggle HUB - Profile</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle</h1>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="home.html">Home</a>
+                <a href="#" id="logout-link">Logout</a>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="main-content profile-content">
+                    <h2>Your Profile</h2>
+                    <div id="profile-details">
+                        <!-- Profile details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Example: Fetch and display user profile info (requires a backend endpoint)
+        fetch('../database/get-profile.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('profile-details').innerHTML = `
+                        <p><strong>First Name:</strong> ${data.firstname}</p>
+                        <p><strong>Last Name:</strong> ${data.lastname}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Contact Number:</strong> ${data.contact_number}</p>
+                        <p><strong>Address:</strong> ${data.address}</p>
+                        <p><strong>Username:</strong> ${data.username}</p>
+                    `;
+                } else {
+                    document.getElementById('profile-details').innerHTML = '<p>Unable to load profile information.</p>';
+                }
+            });
+
+        // Logout functionality
+        document.getElementById('logout-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch('../database/logout.php')
+                .then(() => window.location.href = '../index.html');
+        });
+    </script>
+</body>
+</html>

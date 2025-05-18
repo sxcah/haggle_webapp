@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Haggle HUB - Dashboard</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="profile.html">Profile</a>
+                <a href="../wip.html">Settings</a>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="main-content welcome-content">
+                    <p class="top-text">Welcome back to Haggle!</p>
+                    <p class="bottom-text">You are now logged in. Explore your dashboard and master the art of negotiation.</p>
+                </div>
+                <div class="main-content links-content">
+                    <p>Navigation</p>
+                    <div class="links">
+                        <div class="link"><a href="home.html">Home</a></div>
+                        <div class="link"><a href="#" id="logout-link">Logout</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.getElementById('logout-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch('../database/logout-user.php')
+                .then(() => window.location.href = '../index.html');
+        });
+    </script>
+</body>
+</html>

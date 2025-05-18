@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/consumer.css">
+    <title>View Post - Haggle HUB</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="profile.html">Profile</a>
+                <a href="../wip.html">Settings</a>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="main-content" id="post-details">
+                    <!-- Post details will be loaded here -->
+                </div>
+                <div class="main-content" id="comments-section">
+                    <h3>Comments</h3>
+                    <div id="comments-list">
+                        <!-- Comments will be loaded here -->
+                    </div>
+                    <form id="comment-form">
+                        <textarea id="comment-content" name="content" rows="3" placeholder="Add a comment..." required></textarea>
+                        <div class="input-group submit-return">
+                            <input type="submit" value="Comment">
+                            <a href="home.html">Back to Home</a>
+                        </div>
+                        <div class="error-message" id="comment-error"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Get post ID from URL
+        function getPostId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        let currentUserId = null;
+
+        // Fetch current user id
+        fetch('../database/get-current-user.php')
+            .then(res => res.json())
+            .then(user => {
+                currentUserId = user.user_id;
+                loadComments();
+            });
+
+        // Load post details
+        function loadPost() {
+            const postId = getPostId();
+            fetch(`../database/get-single-post.php?id=${postId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const postDetails = document.getElementById('post-details');
+                    if (data.success) {
+                        postDetails.innerHTML = `
+                            <p>
+                                <strong>${data.post.username}</strong>
+                                <span class="post-date">${data.post.created_at}</span>
+                            </p>
+                            <h2>${data.post.content}</h2>
+                        `;
+                    } else {
+                        postDetails.innerHTML = '<p>Post not found.</p>';
+                    }
+                });
+        }
+
+        // Load comments
+        function loadComments() {
+            const postId = getPostId();
+            fetch(`../database/get-comments.php?post_id=${postId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const commentsList = document.getElementById('comments-list');
+                    if (data.success && data.comments.length > 0) {
+                        commentsList.innerHTML = data.comments.map(comment => `
+                            <div class="comment">
+                                <p>
+                                    <strong>${comment.username}</strong>
+                                    <span class="comment-date">${comment.created_at}</span>
+                                    ${currentUserId && currentUserId == comment.user_id ? `<button class="delete-comment" data-id="${comment.id}">Delete</button>` : ''}
+                                </p>
+                                <p>${comment.content}</p>
+                            </div>
+                        `).join('');
+                    } else {
+                        commentsList.innerHTML = '<p>No comments yet.</p>';
+                    }
+
+                    // Add event listeners for delete buttons
+                    document.querySelectorAll('.delete-comment').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const commentId = this.getAttribute('data-id');
+                            if (confirm('Are you sure you want to delete this comment?')) {
+                                fetch('../database/delete-comment.php', {
+                                    method: 'POST',
+                                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                                    body: new URLSearchParams({comment_id: commentId})
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        loadComments();
+                                    } else {
+                                        alert(data.error || 'Failed to delete comment.');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+        }
+
+        // Handle comment submission
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const content = document.getElementById('comment-content').value.trim();
+            const commentError = document.getElementById('comment-error');
+            commentError.textContent = '';
+            commentError.style.display = 'none';
+
+            if (!content) {
+                commentError.textContent = 'Comment cannot be empty.';
+                commentError.style.display = 'block';
+                return;
+            }
+
+            const postId = getPostId();
+            fetch('../database/create-comment.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: new URLSearchParams({post_id: postId, content})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('comment-form').reset();
+                    loadComments();
+                } else {
+                    commentError.textContent = data.error || 'Failed to add comment.';
+                    commentError.style.display = 'block';
+                }
+            });
+        });
+
+        // Initial load
+        loadPost();
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Haggle HUB</title>
+</head>
+<body>
+    <main>
+        <nav>
+            <div class="hero-title">
+                <h1>Haggle</h1>
+            </div>
+        </nav>
+        <section>
+            <div class="main-container">
+                <div class="main-content welcome-content">
+                    <p class="top-text">Join Haggle, your trusted platform for mastering negotiation!</p>
+                    <p class="bottom-text">Create an account to start learning, sharing, and perfecting your haggling skills.</p>
+                </div>
+                <div class="main-content form-content">
+                    <form action="../database/register-account-information.php" method="post" onsubmit="return false" id="register-form">
+                        <div class="error-message" id="general-error">general-error</div>
+                        <div class="input-group">
+                            <input type="text" class="text-field" id="firstname" name="firstname" placeholder="First Name">
+                            <div class="error-message" id="firstname-error">First name error</div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="text-field" id="lastname" name="lastname" placeholder="Last Name">
+                            <div class="error-message" id="lastname-error">Last name error</div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="text-field" id="email" name="email" placeholder="Email">
+                            <div class="error-message" id="email-error">Email error</div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="text-field" id="address" name="address" placeholder="Address">
+                            <div class="error-message" id="address-error">Address error</div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="text-field" id="contact-number" name="contact-number" placeholder="Contact Number">
+                            <div class="error-message" id="contact-number-error">Contact number error</div>
+                        </div>
+                        <div class="links">
+                            <div class="form-link"><p>Already have an account?</p><a href="login.html">Login here!</a></div>
+                        </div>
+                        <div class="input-group submit-return">
+                            <input type="submit" id="submit-button" value="Continue">
+                            <div class="link"><a href="../index.html">Return to Hub</a></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../script/user-information-script.js"></script>
+</body>
+</html>
