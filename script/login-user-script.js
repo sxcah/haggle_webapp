@@ -35,3 +35,13 @@ loginForm.addEventListener('submit', async function(event) {
         loginGeneralError.style.display = 'block';
     }
 });
+
+function togglePasswordVisibility() {
+    if (loginPassword.type === 'password') {
+        loginPassword.type = 'text';
+        loginShowPassword.value = 'Hide Password';
+    } else {
+        loginPassword.type = 'password';
+        loginShowPassword.value = 'Show Password';
+    }
+}
